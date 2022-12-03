@@ -1,6 +1,6 @@
 const {readFileSync} = require("fs")
 
-const input = readFileSync("./input.txt").toString("utf-8").replace(/\r/g, "").split("\n")
+const input = readFileSync("./input.txt", "utf-8").replace(/\r/g, "").split("\n")
 const teams = Array.from({length: input.length/3}, () => input.splice(0, 3))
 
 const badge_priorities = teams.map(t => {

@@ -1,6 +1,6 @@
 const {readFileSync} = require("fs")
 
-const input = readFileSync("./input.txt").toString("utf-8").replace(/\r/g, "")
+const input = readFileSync("./input.txt", "utf-8").replace(/\r/g, "")
 const elves = input.split("\n\n")
 
 const elves_sum = elves.map(e => {

@@ -1,6 +1,6 @@
 const {readFileSync} = require("fs")
 
-const input = readFileSync("./input.txt").toString("utf-8").replace(/\r/g, "")
+const input = readFileSync("./input.txt", "utf-8").replace(/\r/g, "")
 const rucksacks = input.split("\n")
 
 const doubled_item_priorities = rucksacks.map(r => {
