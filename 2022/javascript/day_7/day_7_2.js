@@ -60,12 +60,11 @@ function mapDirSizes(layer, dir) {
 }
 
 const total_used = getFileSizePlusInnerDirectories(file_system)
-const need_to_delete = 70000000 - total_used
+const free_space = 70000000 - total_used
+const need_to_delete = 30000000 - free_space
 mapDirSizes(file_system, "")
-console.log(need_to_delete)
 
 let sorted = dir_and_size.map(p => ({path: p.path, diff: p.size-need_to_delete, size: p.size})).filter(n => n.diff >= 0).sort((a,b) => a.diff-b.diff)
 
-// only working for test input
-console.log(sorted)
-console.log(sorted[0].size)
+console.log(sorted[0])
+console.log("Total Size of Directory to delete: ", sorted[0].size)
