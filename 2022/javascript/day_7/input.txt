@@ -1,4 +1,3 @@
-$ cd /
 $ ls
 187585 dgflmqwt.srm
 dir gnpd
