@@ -66,6 +66,8 @@ function BFS() {
     queue[0].path = `${destination.y},${destination.x}`
     while(queue.length) {
         const current_node = queue.shift()
+        // shows current status for each position
+        showCurrent(queue, result, current_node)
         const approx = getApproximate(current_node)
         for(let nearby of approx) {
             if(nearby.z === 1) {
@@ -82,6 +84,17 @@ function BFS() {
     }
     finish_node = result.filter(h => h.z === 1).map(n => ({...n, pathlength: n.path.split("|").length})).sort((a,b) => a.pathlength-b.pathlength)[0]
     return finish_node
+}
+
+function showCurrent(queue, result, current) {
+    const visual = grid.slice().map((r, i) => r.map((_, ii) => {
+        if(queue.find(c => c.y == i && c.x == ii)) return "0"
+        if(result.find(c => c.y == i && c.x == ii)) return "X"
+        return "."
+    }))
+    visual[current.y][current.x] = "#"
+    console.log("Path:")
+    console.log(visual.map(r => r.join("")).join("\n"))
 }
 
 const path_coordinates = BFS().path.split("|").map(c => ({y: c.split(",")[0],x: c.split(",")[1]}))
