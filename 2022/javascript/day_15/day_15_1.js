@@ -7,10 +7,11 @@ const check_row = 2000000
 
 const pairs = input.split("\n").map(l => {
     const [sensor_x, sensor_y, beacon_x, beacon_y] = l.match(/(-?\d+)/g).map(n => parseInt(n))
+    const distance = Math.abs((sensor_x) - (beacon_x)) + Math.abs(sensor_y - beacon_y)
     if(sensor_x < lowest_x) lowest_x = sensor_x
-    if(beacon_x < lowest_x) lowest_x = beacon_x
+    if((beacon_x-distance) < lowest_x) lowest_x = (beacon_x-distance)
     if(sensor_x > highest_x) highest_x = sensor_x
-    if(beacon_x > highest_x) highest_x = beacon_x
+    if((beacon_x+distance) > highest_x) highest_x = (beacon_x+distance)
     return {
         sensor: {
             x: sensor_x,
@@ -20,7 +21,7 @@ const pairs = input.split("\n").map(l => {
             x: beacon_x,
             y: beacon_y
         },
-        distance: Math.abs((sensor_x) - (beacon_x)) + Math.abs(sensor_y - beacon_y)
+        distance
     }
 })
 
