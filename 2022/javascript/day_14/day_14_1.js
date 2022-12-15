@@ -1,5 +1,4 @@
 const {readFileSync} = require("fs")
-const { off } = require( "process" )
 
 const input = readFileSync("./input.txt", "utf-8").replace(/\r/g, "")
 let paths = input.split("\n").map(p => (p.split(" -> ").map(p => ({x: parseInt(p.split(",")[0]), y: parseInt(p.split(",")[1])}))))
