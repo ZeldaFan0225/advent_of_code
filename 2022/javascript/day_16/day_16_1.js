@@ -9,7 +9,8 @@ const valves = input.split("\n").map(l => {
         name: valves.splice(0, 1)[0],
         connected_to: valves,
         flow_rate,
-        explored: false
+        opened: 0,
+        time: 0
     }
 })
 
@@ -22,8 +23,9 @@ function BFS() {
         const current_node = queue.shift()
         const approx = valves.filter(v => current_node.connected_to.includes(v.name))
         for(let nearby of approx) {
-            nearby.path = current_node.path + `|${nearby.name},${nearby.flow_rate}`
-            if(!nearby.explored) queue.push(nearby);
+            nearby.opened = nearby.flow_rate + current_node.opened
+            nearby.time += (nearby.flow_rate ? 2 : 1)
+            if(nearby.time < 30) queue.push(nearby);
         }
         current_node.explored = true;
         queue = [...new Set(queue)]
@@ -32,4 +34,4 @@ function BFS() {
     return result
 }
 
-console.log(BFS())
+console.log(BFS().sort((a,b) => b.opened - a.opened)[0])
