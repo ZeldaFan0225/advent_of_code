@@ -1,5 +1,6 @@
 #include <iostream>
 #include "day_1/day_1.h"
+#include "day_2/day_2.h"
 
 int main() {
     unsigned char day;
@@ -14,6 +15,15 @@ int main() {
             printf("Running day %i part %i.\n", day, part);
 
             part == 1 ? day_1_1() : day_1_2();
+            break;
+        }
+        case 2: {
+            unsigned char part;
+            printf("What part do you want to run (1, 2)?\n");
+            scanf("%i", &part);
+            printf("Running day %i part %i.\n", day, part);
+
+            part == 1 ? day_2_1() : day_2_2();
             break;
         }
         default: {
