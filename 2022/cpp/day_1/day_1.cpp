@@ -1,12 +1,11 @@
 #include "day_1.h"
 #include <string>
 #include <fstream>
-#include <iostream>
 #include <vector>
 
 using namespace std;
 
-int day_1_2() {
+int day_1_1() {
     string line;
 
     ifstream MyReadFile("../day_1/input.txt");
@@ -30,23 +29,15 @@ int day_1_2() {
 
     MyReadFile.close();
 
-    unsigned int largest[3] = {0,0,0};
+    unsigned int largest = 0;
 
     for(int i = 0; i < packs.size(); i++) {
-        unsigned int curr = packs.data()[i];
-        if(curr > largest[0]) {
-            largest[2] = largest[1];
-            largest[1] = largest[0];
-            largest[0] = curr;
-        } else if(curr > largest[1]) {
-            largest[2] = largest[1];
-            largest[1] = curr;
-        } else if(curr > largest[2]) {
-            largest[2] = curr;
+        if(packs.data()[i] > largest) {
+            largest = packs.data()[i];
         }
     }
 
-    printf("Sum of largest 3 Packpacks: %i", largest[0] + largest[1] + largest[2]);
+    printf("Largest Packpack: %i", largest);
 
     return 0;
 }
