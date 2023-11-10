@@ -9,4 +9,6 @@ add_executable(cpp main.cpp
         day_1/day_1_2.cpp
         day_2/day_2_1.cpp
         day_2/day_2_2.cpp
-        day_2/day_2.h)
+        day_2/day_2.h
+        day_3/day_3_1.cpp
+        day_3/day_3_2.cpp)
