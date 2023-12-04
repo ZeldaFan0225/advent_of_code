@@ -3,25 +3,26 @@ const {readFileSync} = require("fs")
 const input = readFileSync("./input.txt", "utf-8").replace(/\r/g, "")
 const lines = input.split("\n")
 
-const cards = lines.map(l => {
+const cards = lines.map((l, i) => {
     const [winning_line, own_line] = l.split(" | ")
     const winning = winning_line.split(": ")[1].split(" ").map(n => parseInt(n)).filter(n => !isNaN(n))
     const own = own_line.split(" ").map(n => parseInt(n)).filter(n => !isNaN(n))
     return {
         winning,
-        own
+        own,
+        index: i,
+        process_amount: 1
     }
 })
 
-const values = []
-let i = 0;
-for(let c of cards) {
-    const value = getAmountMatching(c)
-    //console.log(i)
-    //console.log(i + value + 1)
-    //console.log(cards.length)
-    if(value) cards.push(...cards.slice(i + 1, i + value + 1 > cards.length ? (i + value + 1) - (i + value + 1 - cards.length)  : i + value + 1))
-    i++;
+console.log(cards)
+
+for(let i = 0; i < cards.length; i++) {
+    const card = cards[i]
+    const score = getAmountMatching(card)
+    for(let ind = card.index + 1; ind <= (card.index + score); ind++) {
+        cards[ind].process_amount += card.process_amount
+    }
 }
 
 function getAmountMatching(card_data) {
@@ -32,4 +33,8 @@ function getAmountMatching(card_data) {
     return matching
 }
 
-console.log(`Total number of scratchcards: ${i}`)
+console.log(cards)
+
+const score = cards.map(c => c.process_amount).reduce((a, b) => a + b)
+
+console.log(`Total number of scratchcards: ${score}`)
