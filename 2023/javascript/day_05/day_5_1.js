@@ -13,9 +13,10 @@ for(let map of lines) {
     maps[mapname] = []
 
     maplines.forEach(m => {
-        const [source, destination, range] = m.split(" ").map(n => parseInt(n))
+        const [destination, source, range] = m.split(" ").map(n => parseInt(n))
         maps[mapname].push({
-            source,
+            source_start: source,
+            source_end: source + range - 1,
             destination,
             range,
             diff: destination - source
@@ -24,3 +25,21 @@ for(let map of lines) {
 }
 
 console.log(maps)
+
+for(let processing of Object.values(maps)) {
+    for(let i = 0; i < seeds.length; i++) {
+        const seed = seeds[i]
+        for(let map of processing) {
+            if (seed >= map.source_start && seed <= map.source_end) {
+                seeds[i] = seed + map.diff
+                break;
+            }
+        }
+    }
+}
+
+
+// Too high:1136789458
+
+console.log("The locations are: ", seeds.join(", "))
+console.log("The lowest location is: ", seeds.sort()[0])
