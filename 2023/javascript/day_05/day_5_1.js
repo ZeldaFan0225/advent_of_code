@@ -1,4 +1,5 @@
 const {readFileSync} = require("fs")
+const BENCHMARK_START = process.hrtime.bigint()
 
 const input = readFileSync("./input.txt", "utf-8").replace(/\r/g, "")
 const lines = input.split("\n\n")
@@ -39,3 +40,6 @@ seeds.sort((a, b) => a - b)
 
 console.log("The locations are: ", seeds.join(", "))
 console.log("The lowest location is: ", seeds[0])
+
+const BENCHMARK_END = process.hrtime.bigint()
+console.log(`Execution time: ${(BENCHMARK_END - BENCHMARK_START) / 1000000n}ms`)
