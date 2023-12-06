@@ -17,8 +17,6 @@ for(let category of lines) {
         categories.at(-1).push({
             source_start: source,
             source_end: source + (range - 1),
-            //destination,
-            //range,
             diff: destination - source
         })
     })
@@ -33,7 +31,6 @@ for(let category of categories) {
             }
         }
     }
-    console.log(seeds)
 }
 
 seeds.sort((a, b) => a - b)

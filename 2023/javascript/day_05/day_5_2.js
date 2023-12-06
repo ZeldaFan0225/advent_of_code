@@ -24,8 +24,6 @@ for(let category of lines) {
         categories.at(-1).push({
             source_start: source,
             source_end: source + (range - 1),
-            //destination,
-            //range,
             diff: destination - source
         })
     })
@@ -44,40 +42,32 @@ for(let category of categories) {
             if(seeds[i].range_end >= map.source_start || seeds[i].range_start <= map.source_end) {
                 // if fully inside map range
                 if(seeds[i].range_start >= map.source_start && seeds[i].range_end <= map.source_end) {
-                    console.log("fully overlapping with: ", map)
                     seeds[i] = {
                         range_start: seeds[i].range_start + map.diff,
                         range_end: seeds[i].range_end + map.diff,
                     }
-                    console.log("converted to: ", seeds[i])
                     break;
                 // if only the end is overlapping
                 } else if(seeds[i].range_end >= map.source_start && seeds[i].range_start < map.source_start) {
-                    console.log("end overlapping with: ", map)
                     to_push.push({
                         range_start: map.source_start + map.diff,
                         range_end: seeds[i].range_end + map.diff,
                     })
-                    console.log("converted to: ", seeds[i+1])
                     seeds[i] = {
                         range_start: seeds[i].range_start,
                         range_end: map.source_start - 1,
                     }
-                    console.log("and: ", seeds[i])
                     break;
                 // if only the start is overlapping
                 } else if(seeds[i].range_start <= map.source_end && seeds[i].range_end > map.source_end) {
-                    console.log("start overlapping with: ", map)
                     to_push.push({
                         range_start: seeds[i].range_start + map.diff,
                         range_end: map.source_end + map.diff,
                     })
-                    console.log("converted to: ", seeds[i+1])
                     seeds[i] = {
                         range_start: map.source_end + 1,
                         range_end: seeds[i].range_end,
                     }
-                    console.log("and: ", seeds[i])
                     break;
                 }
             }
@@ -85,7 +75,6 @@ for(let category of categories) {
         i += 1;
     }
     seeds.push(...to_push)
-    console.log("")
 }
 
 seeds.sort((a, b) => a.range_start - b.range_start)
