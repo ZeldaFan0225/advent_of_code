@@ -40,4 +40,4 @@ const ways_count = tolerances.reduce((a, b) => a * b)
 console.log(`The amount of possible ways to win are: ${ways_count}`)
 
 const BENCHMARK_END = process.hrtime.bigint()
-console.log(`Execution time: ${(BENCHMARK_END - BENCHMARK_START) / 1000000n}ms`)
+console.log(`Execution time: ${(BENCHMARK_END - BENCHMARK_START) / 1000n}µs`)

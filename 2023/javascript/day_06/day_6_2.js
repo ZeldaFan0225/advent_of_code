@@ -24,4 +24,4 @@ function getEnds(time, distance) {
 console.log(`The amount of possible ways to win are: ${tolerance}`)
 
 const BENCHMARK_END = process.hrtime.bigint()
-console.log(`Execution time: ${(BENCHMARK_END - BENCHMARK_START) / 1000000n}ms`)
+console.log(`Execution time: ${(BENCHMARK_END - BENCHMARK_START) / 1000n}µs`)
