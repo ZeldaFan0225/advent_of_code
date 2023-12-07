@@ -85,7 +85,8 @@ function deckStat(deck) {
 }
 
 let winnings = 0
-const sorted = quickSort(decks)
+//const sorted = quickSort(decks)
+const sorted = decks.sort(compareDecks)
 
 for(let i = 0; i < sorted.length; i++) {
     winnings += ((i+1) * sorted[i].bid)
