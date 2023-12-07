@@ -11,6 +11,7 @@ const decks = lines.map(l => {
     return {
         bid: parseInt(bid),
         deck,
+        type: deckStat(deck)
     }
 })
 
@@ -22,7 +23,7 @@ function quickSort(arr) {
     const after = []
     for(let i = 0; i < arr.length; i++) {
         if(i === pivot_i) continue;
-        if(compareDecks(arr[i].deck, pivot.deck) <= 0)  before.push(arr[i])
+        if(compareDecks(arr[i], pivot) <= 0)  before.push(arr[i])
         else after.push(arr[i])
     }
 
@@ -30,19 +31,19 @@ function quickSort(arr) {
 }
 
 function compareDecks(deck_1, deck_2) {
-    const type_1 = deckStat(deck_1)
-    const type_2 = deckStat(deck_2)
+    const type_1 = deck_1.type
+    const type_2 = deck_2.type
     if(type_1 < type_2) return -1
     else if(type_1 > type_2) return 1
 
     let result = 0
     //decks are of same type
-    for(let i = 0; i < deck_1.length; i++) {
-        if(card_types.indexOf(deck_1[i]) < card_types.indexOf(deck_2[i])) {
+    for(let i = 0; i < deck_1.deck.length; i++) {
+        if(card_types.indexOf(deck_1.deck[i]) < card_types.indexOf(deck_2.deck[i])) {
             result = -1
             break;
         }
-        if(card_types.indexOf(deck_1[i]) > card_types.indexOf(deck_2[i])) {
+        if(card_types.indexOf(deck_1.deck[i]) > card_types.indexOf(deck_2.deck[i])) {
             result = 1
             break;
         }
@@ -91,6 +92,7 @@ for(let i = 0; i < sorted.length; i++) {
 }
 
 console.log(`The total winnings are: ${winnings}`)
+
 
 const BENCHMARK_END = process.hrtime.bigint()
 console.log(`Execution time: ${(BENCHMARK_END - BENCHMARK_START) / 1000n}µs`)
