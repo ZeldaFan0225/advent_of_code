@@ -73,4 +73,5 @@ Days I solved:
 | 6 | ✅ | ✅ |
 | 7 | ✅ | ✅ |
 | 8 | ✅ | ✅ |
-| 9 | pending | pending |
+| 9 | ✅ | ✅ |
+| 10 | pending | pending |
