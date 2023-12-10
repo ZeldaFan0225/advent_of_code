@@ -1,6 +1,8 @@
 # Advent Of Code
 
 Here are my solutions.
+Javascript/Typescript Solutions can be found in a separate repo: https://github.com/ZeldaFan0225/Advent-of-Code-TS
+
 
 Days I solved:
 
